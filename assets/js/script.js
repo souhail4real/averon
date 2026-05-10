@@ -11,14 +11,19 @@ const navbar = document.querySelector("[data-navbar]");
 const navCloseBtn = document.querySelector("[data-nav-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
 
-const elemArr = [navCloseBtn, overlay, navOpenBtn];
+const openNavbar = function () {
+  navbar.classList.add("active");
+  overlay.classList.add("active");
+};
 
-for (let i = 0; i < elemArr.length; i++) {
-  elemArr[i].addEventListener("click", function () {
-    navbar.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
-}
+const closeNavbar = function () {
+  navbar.classList.remove("active");
+  overlay.classList.remove("active");
+};
+
+navOpenBtn.addEventListener("click", openNavbar);
+navCloseBtn.addEventListener("click", closeNavbar);
+overlay.addEventListener("click", closeNavbar);
 
 /**
  * toggle navbar & overlay when click any navbar-link
@@ -27,10 +32,7 @@ for (let i = 0; i < elemArr.length; i++) {
 const navbarLinks = document.querySelectorAll("[data-navbar-link]");
 
 for (let i = 0; i < navbarLinks.length; i++) {
-  navbarLinks[i].addEventListener("click", function () {
-    navbar.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
+  navbarLinks[i].addEventListener("click", closeNavbar);
 }
 
 
